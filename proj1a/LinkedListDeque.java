@@ -21,12 +21,13 @@ public class LinkedListDeque<T> {
         size = 0;
     }
 
+    /**
     public LinkedListDeque(T item) {
         sentinel = new IntNode(null, null, null);
         sentinel.next =  new IntNode(sentinel, item, sentinel);
         sentinel.prev = sentinel.next;
         size = 1;
-    }
+    } */
 
     // Adds an item of type T to the front of the deque.
     public void addFirst(T item) {
@@ -82,11 +83,13 @@ public class LinkedListDeque<T> {
     public void printDeque() {
         if (this.isEmpty()) {
             System.out.println("Nothing in the list!");
-            return; }
+            return;
+        }
         IntNode p = sentinel.next;
         while (p != sentinel) {
             System.out.print(p.item + " ");
-            p = p.next; }
+            p = p.next;
+        }
         System.out.print("\n");
         return;
     }
@@ -101,10 +104,12 @@ public class LinkedListDeque<T> {
         IntNode p = sentinel;
         if (index <= size / 2){
             for (int i = 0; i <= index; i++ ){ p = p.next; }
-            return (p.item); }
+            return (p.item);
+        }
         else {
-            for (int i = 0; i < size-index; i++) { p = p.prev; }
-            return (p.item); }
+            for (int i = 0; i < size - index; i++) { p = p.prev; }
+            return (p.item);
+        }
     }
 
     //Same as get, but uses recursion.
@@ -130,6 +135,7 @@ public class LinkedListDeque<T> {
     /* Create an entirely new LinkedListDeque, with the exact same items as other.
        However, they should be different objects.
        I.e. if you change other, the new LinkedListDeque you created should not change as well.  */
+    /**
     public LinkedListDeque(LinkedListDeque<T> other) {
         sentinel = new IntNode(null, null, null);
         sentinel.next = sentinel;
@@ -139,7 +145,7 @@ public class LinkedListDeque<T> {
         for (int i = 0; i < other.size(); i++)  {
             addLast(other.get(i));
             size += 1; }
-    }
+    } */
 
     /**
      * public static void main(String[] args) {

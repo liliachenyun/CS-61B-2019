@@ -26,8 +26,10 @@ public class ArrayDeque<T> {
             head = 0;
             tail = size;
             cap *= 2;
-            items = a; }
-        /* It's not necessary to shorten the array when the capacity of array is already the minimum.*/
+            items = a;
+        }
+        /** It's not necessary to shorten the array
+            when the capacity of array is already the minimum.*/
         else if (cap <= basic) { return; }
         /* Shorten the array when the cap is bigger than the minimum.*/
         else {
@@ -35,11 +37,13 @@ public class ArrayDeque<T> {
             if (head <= tail) { System.arraycopy(items, head, a, 0, tail - head); }
             else {
                 System.arraycopy(items, head, a, 0, cap - head);
-                System.arraycopy(items, 0, a, cap - head, size - cap + head); }
+                System.arraycopy(items, 0, a, cap - head, size - cap + head);
+            }
             head = 0;
             tail = size;
             cap /= 2;
-            items = a; }
+            items = a;
+        }
     }
 
     // Adds an item of type T to the front of the deque.
@@ -83,13 +87,15 @@ public class ArrayDeque<T> {
             items [cap - 1] = null;
             tail += cap - 1;
             if (size < cap / 4) { this.resize(); }
-            return last; }
+            return last;
+        }
         else {
             T last = items[tail - 1];
             items [tail - 1] = null;
             tail -= 1;
             if (size < cap / 4) { this.resize(); }
-            return last; }
+            return last;
+        }
     }
 
 
@@ -109,10 +115,12 @@ public class ArrayDeque<T> {
     public void printDeque() {
         if (this.isEmpty()) {
             System.out.println("Nothing in the list!");
-            return; }
+            return;
+        }
         for (int i = 0; i < size; i++) {
             if(head+i < cap) { System.out.print(items[head+i] + " "); }
-            else { System.out.print(items[head+i-cap] + " "); } }
+            else { System.out.print(items[head+i-cap] + " "); }
+        }
         System.out.print("\n");
         return;
     }
@@ -124,13 +132,14 @@ public class ArrayDeque<T> {
     public T get(int index) {
         if (index >= size) { return null; }
         else if (this.isEmpty()) { return null; }
-        else if(head+index < cap) { return items[head+index] ; }
-        else { return items[head+index - cap]; }
+        else if(head + index < cap) { return items[head+index] ; }
+        else { return items[head + index - cap]; }
     }
 
     /* Creating a deep copy means that you create an entirely new ArrayDeque,
        with the exact same items as other. However, they should be different objects.
        i.e. if you change other, the new ArrayDeque you created should not change as well. */
+    /**
     public ArrayDeque(ArrayDeque other) {
         items = (T[]) new Object[other.cap];
         head = other.head;
@@ -139,7 +148,7 @@ public class ArrayDeque<T> {
         basic = other.basic;
         size = other.size;
         System.arraycopy(other.items, 0, items, 0,cap);
-    }
+    } */
 
     /**
      * public static void main(String[] args) {
