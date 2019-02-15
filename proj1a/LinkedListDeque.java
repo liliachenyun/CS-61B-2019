@@ -77,8 +77,7 @@ public class LinkedListDeque<T> {
     public boolean isEmpty() {
         if (sentinel.next == sentinel) {
             return (true);
-        }
-        else {
+        } else {
             return (false);
         }
     }
@@ -111,18 +110,16 @@ public class LinkedListDeque<T> {
     public T get(int index) {
         if (index >= size) {
             return null;
-        }
-        else if (this.isEmpty()) {
+        } else if (this.isEmpty()) {
             return null;
         }
         IntNode p = sentinel;
-        if (index <= size / 2){
-            for (int i = 0; i <= index; i++ ){
+        if (index <= size / 2) {
+            for (int i = 0; i <= index; i++) {
                 p = p.next;
             }
             return (p.item);
-        }
-        else {
+        } else {
             for (int i = 0; i < size - index; i++) {
                 p = p.prev;
             }
@@ -134,14 +131,11 @@ public class LinkedListDeque<T> {
     public T getRecursive(int index) {
         if (index >= size) {
             return null;
-        }
-        else if (this.isEmpty()) {
+        } else if (this.isEmpty()) {
             return null;
-        }
-        else if (index <= size / 2) {
+        } else if (index <= size / 2) {
             return getRecursivePos(index, sentinel.next).item;
-        }
-        else {
+        } else {
             return getRecursiveNeg(size - index - 1, sentinel.prev).item;
         }
     }

@@ -15,9 +15,9 @@ public class ArrayDeque<T> {
     }
 
     private void resize() {
-        /* Expand the array and the situation should be considered that all the elements
-           are removed from array, meanwhile tail and head are pointed to the same index.*/
         if (head == tail && size != 0) {
+            /* Expand the array and the situation should be considered that all the elements
+           are removed from array, meanwhile tail and head are pointed to the same index.*/
             T[] a = (T[]) new Object[cap * 2];
             System.arraycopy(items, head, a, 0, cap - head);
             System.arraycopy(items, 0, a, cap - head, head);
@@ -25,19 +25,16 @@ public class ArrayDeque<T> {
             tail = size;
             cap *= 2;
             items = a;
-        }
-        /** It's not necessary to shorten the array
+        } else if (cap <= basic) {
+            /** It's not necessary to shorten the array
             when the capacity of array is already the minimum.*/
-        else if (cap <= basic) {
             return;
-        }
-        /* Shorten the array when the cap is bigger than the minimum.*/
-        else {
+        } else { 
+            /* Shorten the array when the cap is bigger than the minimum.*/
             T[] a = (T[]) new Object[cap / 2];
             if (head <= tail) {
                 System.arraycopy(items, head, a, 0, tail - head);
-            }
-            else {
+            } else {
                 System.arraycopy(items, head, a, 0, cap - head);
                 System.arraycopy(items, 0, a, cap - head, size - cap + head);
             }
@@ -53,8 +50,7 @@ public class ArrayDeque<T> {
         size += 1;
         if (head == 0) {
             head += cap - 1;
-        }
-        else {
+        } else {
             head -= 1;
         }
         items[head] = item;
@@ -69,8 +65,7 @@ public class ArrayDeque<T> {
         size += 1;
         if (tail == cap - 1) {
             tail = 0;
-        }
-        else { tail += 1;
+        } else { tail += 1;
         }
         if (head == tail) {
             this.resize();
@@ -88,8 +83,7 @@ public class ArrayDeque<T> {
         items[head] = null;
         if (head == cap - 1) {
             head = 0;
-        }
-        else {
+        } else {
             head += 1;
         }
         if (size < cap / 4) {
@@ -113,8 +107,7 @@ public class ArrayDeque<T> {
                 this.resize();
             }
             return last;
-        }
-        else {
+        } else {
             T last = items[tail - 1];
             items [tail - 1] = null;
             tail -= 1;
@@ -135,8 +128,7 @@ public class ArrayDeque<T> {
     public boolean isEmpty() {
         if (tail == head) {
             return (true);
-        }
-        else {
+        } else {
             return (false);
         }
     }
@@ -151,8 +143,7 @@ public class ArrayDeque<T> {
         for (int i = 0; i < size; i++) {
             if (head + i < cap) {
                 System.out.print(items[head + i] + " ");
-            }
-            else {
+            } else {
                 System.out.print(items[head + i - cap] + " ");
             }
         }
@@ -167,14 +158,11 @@ public class ArrayDeque<T> {
     public T get(int index) {
         if (index >= size) {
             return null;
-        }
-        else if (this.isEmpty()) {
+        } else if (this.isEmpty()) {
             return null;
-        }
-        else if (head + index < cap) {
+        } else if (head + index < cap) {
             return items[head + index];
-        }
-        else {
+        } else {
             return items[head + index - cap];
         }
     }
