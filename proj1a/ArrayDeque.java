@@ -65,7 +65,8 @@ public class ArrayDeque<T> {
         size += 1;
         if (tail == cap - 1) {
             tail = 0;
-        } else { tail += 1;
+        } else {
+            tail += 1;
         }
         if (head == tail) {
             this.resize();
