@@ -47,7 +47,8 @@ public class LinkedListDeque<T> {
        If no such item exists, returns null. */
     public T removeFirst() {
         if (this.isEmpty()) {
-            return null; }
+            return null;
+        }
         T first = sentinel.next.item;
         sentinel.next = sentinel.next.next;
         sentinel.next.prev.prev = null;
@@ -61,7 +62,8 @@ public class LinkedListDeque<T> {
        If no such item exists, returns null. */
     public T removeLast() {
         if (this.isEmpty()) {
-            return null; }
+            return null;
+        }
         T last = sentinel.prev.item;
         sentinel.prev = sentinel.prev.prev;
         sentinel.prev.next.prev = null;
@@ -74,9 +76,11 @@ public class LinkedListDeque<T> {
     // Returns true id deque is empty, false otherwise.
     public boolean isEmpty() {
         if (sentinel.next == sentinel) {
-            return (true); }
+            return (true);
+        }
         else {
-            return (false); }
+            return (false);
+        }
     }
 
     // Returns the number of items in the deque.
@@ -89,11 +93,13 @@ public class LinkedListDeque<T> {
     public void printDeque() {
         if (this.isEmpty()) {
             System.out.println("Nothing in the list!");
-            return; }
+            return;
+        }
         IntNode p = sentinel.next;
         while (p != sentinel) {
             System.out.print(p.item + " ");
-            p = p.next; }
+            p = p.next;
+        }
         System.out.print("\n");
         return;
     }
@@ -104,43 +110,55 @@ public class LinkedListDeque<T> {
        Must not alter the deque! */
     public T get(int index) {
         if (index >= size) {
-            return null; }
+            return null;
+        }
         else if (this.isEmpty()) {
-            return null; }
+            return null;
+        }
         IntNode p = sentinel;
         if (index <= size / 2){
             for (int i = 0; i <= index; i++ ){
-                p = p.next; }
-            return (p.item); }
+                p = p.next;
+            }
+            return (p.item);
+        }
         else {
             for (int i = 0; i < size - index; i++) {
-                p = p.prev; }
-            return (p.item); }
+                p = p.prev;
+            }
+            return (p.item);
+        }
     }
 
     //Same as get, but uses recursion.
     public T getRecursive(int index) {
         if (index >= size) {
-            return null; }
+            return null;
+        }
         else if (this.isEmpty()) {
-            return null; }
+            return null;
+        }
         else if (index <= size / 2) {
-            return getRecursivePos(index, sentinel.next).item; }
+            return getRecursivePos(index, sentinel.next).item;
+        }
         else {
-            return getRecursiveNeg(size - index - 1, sentinel.prev).item; }
+            return getRecursiveNeg(size - index - 1, sentinel.prev).item;
+        }
     }
 
     //Private helper method for getRecursive to find target by next IntNode.
     private IntNode getRecursivePos(int index, IntNode p) {
         if (index == 0) {
-            return p; }
+            return p;
+        }
         return getRecursivePos(index - 1, p.next);
     }
 
     //Private helper method for getRecursive to find target by previous IntNode.
     private IntNode getRecursiveNeg(int index, IntNode p) {
         if (index == 0) {
-            return p; }
+            return p;
+        }
         return getRecursiveNeg(index - 1, p.prev);
     }
 
