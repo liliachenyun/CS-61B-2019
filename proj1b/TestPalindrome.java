@@ -26,3 +26,4 @@ public class TestPalindrome {
         assertFalse(palindrome.isPalindrome("cat", cc));
     }
 }
+
