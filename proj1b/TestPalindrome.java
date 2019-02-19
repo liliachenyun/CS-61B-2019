@@ -18,12 +18,23 @@ public class TestPalindrome {
 
     @Test
     public void testisPalindrome() {
-        CharacterComparator cc = new OffByN(2);
+        assertTrue(palindrome.isPalindrome(""));
+        assertTrue(palindrome.isPalindrome("a"));
+        assertTrue(palindrome.isPalindrome("aa"));
+        assertTrue(palindrome.isPalindrome("noon"));
+        assertFalse(palindrome.isPalindrome("cat"));
+        CharacterComparator cc = new OffByOne();
         assertTrue(palindrome.isPalindrome("", cc));
         assertTrue(palindrome.isPalindrome("a", cc));
-        assertTrue(palindrome.isPalindrome("aac", cc));
-        assertTrue(palindrome.isPalindrome("gmake", cc));
+        assertTrue(palindrome.isPalindrome("aab", cc));
+        assertTrue(palindrome.isPalindrome("flake", cc));
         assertFalse(palindrome.isPalindrome("cat", cc));
+        CharacterComparator ccN = new OffByN(2);
+        assertTrue(palindrome.isPalindrome("", ccN));
+        assertTrue(palindrome.isPalindrome("a", ccN));
+        assertTrue(palindrome.isPalindrome("aac", ccN));
+        assertTrue(palindrome.isPalindrome("gmake", ccN));
+        assertFalse(palindrome.isPalindrome("cat", ccN));
     }
 }
 
