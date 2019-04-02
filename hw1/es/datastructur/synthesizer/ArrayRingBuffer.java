@@ -112,8 +112,5 @@ public class ArrayRingBuffer<T> implements BoundedQueue<T> {
     public T peek() {
         return rb[first];
     }
-
-    // TODO: When you get to part 4, implement the needed code to support
-    //       iteration and equals.
 }
 
